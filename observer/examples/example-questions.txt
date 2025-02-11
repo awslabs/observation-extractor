@@ -1,0 +1,20 @@
+1. Does the patient show signs of substance dependency?
+2. Is there evidence that the patient presents a risk to themself or others?
+3. Does the patient have reliable transportation to and from medical appointments?
+4. Does the patient participate in regular physical activity?
+5. Does the patient complain of chronic pain?
+6. Does the patient complain of difficulty with daily tasks?
+7. Does the patient report pain that changes with activity?
+8. Does the document report signs of psychosis?
+9. Does the patient report auditory, visual, olfactory, or gustatory hallucinations?
+10. Has the patient expressed harmful ideas or intentions?
+11. Does the report note any signs of impaired memory?
+12. Does the patient report or demonstrate signs of insight about their condition?
+13. Did the patient report their mood? For example, angry, anxious, appropriate, bright, distressed, fatigued, flat, expressing guilt, hopeful, being irritable, labile, expressing loss of pleasure, being sad, suspicious, tearful, having trouble concentrating, withdrawn, expressing worthlessness, expressing worry
+14. Does the patient report or show signs of depression?
+15. How frequently does the patient report having suicidal thoughts?
+16. How frequently does the patient report thinking about harm to others?
+17. Did the patient articulate reasons they would rather die than live?
+18. Does the document indicate the patient has access to lethal methods?
+19. Has the patient taken steps to enact a plan to harm themselves or others?
+20. Does the report note any prior mental health diagnoses or self-assessment?
