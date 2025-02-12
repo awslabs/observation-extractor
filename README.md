@@ -59,3 +59,14 @@ options:
 
 Use --help to see more options
 ```
+
+By example
+
+```bash
+(.venv) localhost % observer -v \
+  -f sample-record-2.pdf \
+  -t pdf \
+  -c 1 \
+  -o sample-record-2-auto-filtered-out.csv \
+  -q observer/examples/auto-accident.txt
+```
