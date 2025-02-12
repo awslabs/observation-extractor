@@ -1,14 +1,13 @@
 import os
-
+from pdf2image import convert_from_path
+import base64
+from io import BytesIO
 from datetime import datetime
+
 from litellm import completion
 import instructor
 
-from pdf2image import convert_from_path
-from pydantic import BaseModel
-import base64
-from io import BytesIO
-import json
+
 
 from observer.model.observations import Observation, Thought, Observations, Thoughts
 

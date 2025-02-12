@@ -3,7 +3,7 @@ import os
 from pprint import pprint
 
 from observer.filters.negatives import filter_negative_observations
-from observer.model.observations import Thought, Observation
+from observer.model.observations import Observation
 from observer.ingestors.pdf import ingest_pdf
 from observer.writers.csv import write_observations_to_csv
 
