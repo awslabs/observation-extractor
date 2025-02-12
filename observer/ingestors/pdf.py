@@ -113,14 +113,14 @@ def ingest_pdf(input_file_path, questions, metadata={}, verbose=False):
     for idx, page_message in enumerate(page_messages):
         client = instructor.from_litellm(completion)
         page_metadata = metadata.copy()
-        page_metadata['page_number'] = idx + 1 # start at page 1
+        page_metadata['page_number'] = idx + 1 # start numbering at page 1
 
         try:
             resp = client.messages.create(
                 model="bedrock/anthropic.claude-3-sonnet-20240229-v1:0",
                 max_tokens=1024,
-                messages=[page_message, ],
-                response_model=Thoughts, # todo: these should be thoughts so we can add metadata
+                messages=[page_message],
+                response_model=Thoughts,
             )
 
             # for thought in resp:
