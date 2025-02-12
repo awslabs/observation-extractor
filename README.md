@@ -4,7 +4,7 @@
 
 Observations are useful bits of data related to questions that you define that is extracted from the data you pass in. 
 Use Observer to process pdf (and maybe someday other files) into formats like csv (and later parqet) to turn unstructured
-documents into structured observations that you can use directly or through your application.
+documents into structured observations that you can use directly or through your application. When you output to a format like csv or parquet, observations are the row level records.
 
 ## What does it do?
 
