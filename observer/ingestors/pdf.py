@@ -115,19 +115,23 @@ def ingest_pdf(input_file_path, questions, metadata={}, verbose=False):
         page_metadata = metadata.copy()
         page_metadata['page_number'] = idx + 1 # start at page 1
 
-        resp = client.messages.create(
-            model="bedrock/anthropic.claude-3-sonnet-20240229-v1:0",
-            max_tokens=1024,
-            messages=[page_message, ],
-            response_model=Thoughts, # todo: these should be thoughts so we can add metadata
-        )
+        try:
+            resp = client.messages.create(
+                model="bedrock/anthropic.claude-3-sonnet-20240229-v1:0",
+                max_tokens=1024,
+                messages=[page_message, ],
+                response_model=Thoughts, # todo: these should be thoughts so we can add metadata
+            )
 
-        # for thought in resp:
-        print(resp)
-        thoughts = resp.thoughts
-        print(f"Thoughts: {thoughts}")
-        new_observations = [Observation(thought=thought, metadata=page_metadata) for thought in thoughts]
-        print(new_observations)
-        observations.extend(new_observations)
+            # for thought in resp:
+            print(resp)
+            thoughts = resp.thoughts
+            print(f"Thoughts: {thoughts}")
+            new_observations = [Observation(thought=thought, metadata=page_metadata) for thought in thoughts]
+            print(new_observations)
+            observations.extend(new_observations)
+        except Exception as e:
+            print(f"Exception processing page: {idx} of {input_file_path}")
+            print(f"Exception: {e}")
 
     return observations
