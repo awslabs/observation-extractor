@@ -11,7 +11,7 @@ documents into structured observations that you can use directly or through your
 Observer takes an unstructured data file as input (like a pdf) and outputs a list of Observation objects. Each observation 
 includes standard fields that are extracted from the document together with metadata like the document name and page number. 
 
-## Where does Observer fit?
+## Where does it fit?
 
 You can use Observer as a local script for ad-hoc extractions or as a component in data ingestion pipelines. The CLI 
 provides simple interface that you can use in evaluation, tuning, and scaled ingestion.
