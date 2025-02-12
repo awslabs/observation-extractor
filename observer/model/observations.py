@@ -20,11 +20,11 @@ class Observation(pydantic.BaseModel):
     def to_dict(self):
         return {
             'title': self.thought.title,
-            'document_date': str(self.document_date),
-            'document_type': self.document_type,
+            'document_date': str(self.thought.document_date),
+            'document_type': self.thought.document_type,
             'description': self.thought.description,
             'evidence': self.thought.evidence,
-            'question_number': self.question_number,
+            'question_number': self.thought.question_number,
             'question': self.thought.question,
             'metadata': self.metadata
         }

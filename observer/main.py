@@ -2,6 +2,7 @@ import argparse
 import os
 from pprint import pprint
 
+from observer.filters.negatives import filter_negative_observations
 from observer.model.observations import Thought, Observation
 from observer.ingestors.pdf import ingest_pdf
 from observer.writers.csv import write_observations_to_csv
@@ -15,11 +16,13 @@ class Main:
     args: dict
     questions: list[str]
     observations: list[Observation]
+    filtered_observations: list[Observation]
     questions_file: str
 
     def __init__(self):
         print("Initializing main class")
         self.verbose = False
+        self.filtered_observations = []
         self.observations = []
         self.questions = []
 
@@ -106,8 +109,11 @@ class Main:
             for observation in self.observations:
                 pprint(observation)
 
+        # apply filters
+        self.filtered_observations = filter_negative_observations((self.observations))
+
         # write out the results
-        write_observations_to_csv(self.observations, self.args.out)
+        write_observations_to_csv(self.filtered_observations, self.args.out)
 
 def run():
     Main().run()
