@@ -1,3 +1,4 @@
 .idea/**
 **/__pycache__/**
 sample-record-*
+.ipynb_checkpoints/**
