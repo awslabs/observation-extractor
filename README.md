@@ -1,6 +1,6 @@
 # Observer
 
-<b>tl; dr</b> - Observer is a collecting observations from data. 
+<b>tl; dr</b> - Observer is a tool for collecting observations from data. 
 
 Observations are useful bits of data related to questions that you define that is extracted from the data you pass in. 
 Use Observer to process pdf (and maybe someday other files) into formats like csv (and later parqet) to turn unstructured
