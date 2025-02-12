@@ -1,0 +1,24 @@
+1. If the data lists an injury, was the injury work related?
+2. If the data lists an injury, was it an automobile injury?
+3. If the data indicates an automobile injury, does it say if they wore their seatbelt?
+4. If pain is reported, what is the severity of the pain?
+5. If pain is reported, what is the location of the pain?
+6. If pain is reported, how many days per week does the patient reprt experiencing pain?
+7. Does the patient report difficulty climbing stiars?
+8. Does the patient report needing help to get dressed?
+9. Did the patient report a loss of apetite?
+10. Does the patient medical history include chiropractic care?
+11. Does the patient medical history indicate chronic illness?
+12. Does the patient engage in regular physical activity?
+13. Have any x-rays been performed? If so, what was the result?
+14. Have any lab results been performed? If so, what was found?
+15. Has the patient been evaluated for cardiovascular health?
+16. Does the report indicate high blood pressure?
+17. List any vital signs such as pulse, blood pressure, temperature, or heartrate?
+18. What is the reason for this encounter?
+19. What is the service provider for this document?
+20. List any medications administered during this visit.
+21. List any medications the patient has been prescribed or is otherwise using.
+22. Is there family history of hypertension?
+23. Is there family history of early death?
+24. Is there family history of heart attacks?
