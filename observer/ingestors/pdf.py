@@ -7,9 +7,8 @@ from datetime import datetime
 from litellm import completion
 import instructor
 
-
-
 from observer.model.observations import Observation, Thought, Observations, Thoughts
+
 
 def get_prompt(questions, verbose=False):
     prompt = f"""Process the document to return required fields if available. 
