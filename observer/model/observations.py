@@ -3,8 +3,8 @@ from datetime import datetime
 
 class Thought(pydantic.BaseModel):
     title: str
-    document_date: datetime
-    document_type: str
+    document_date: datetime | None
+    document_type: str | None
     description: str
     evidence: str
     question_number: int

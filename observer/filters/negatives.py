@@ -5,7 +5,7 @@ from observer.model.observations import Observation
 from observer.model.boolean import Boolean
 
 
-def is_negative_observation(observation: Observation, verbose=False):
+def is_negative_observation(observation: Observation, is_retry=False, verbose=False):
     # checks if this is a negative observation
     if verbose:
         print(f"Applying filter to {observation}")
@@ -34,15 +34,22 @@ Return True to filter out an observation. Return False to allow the observation 
     }
 
     client = instructor.from_litellm(completion)
-    resp = client.messages.create(
-        model="bedrock/anthropic.claude-3-sonnet-20240229-v1:0",
-        max_tokens=1024,
-        messages=[message],
-        response_model=Boolean,
-    )
-    if verbose:
-        print(f"Filter response: {resp}")
-    return resp.result
+
+    try:
+        resp = client.messages.create(
+            model="bedrock/anthropic.claude-3-sonnet-20240229-v1:0",
+            max_tokens=1024,
+            messages=[message],
+            response_model=Boolean,
+        )
+        if verbose:
+            print(f"Filter response: {resp}")
+        return resp.result
+    except Exception as e:
+        print(f"Encountered exception: {e}...retrying once")
+        if not is_retry:
+            is_negative_observation(observation, is_retry=True, verbose=True)
+
 
 def filter_negative_observations(observations: list[Observation]):
     '''Filters out negative observations
