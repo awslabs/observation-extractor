@@ -4,6 +4,7 @@ import base64
 from io import BytesIO
 from datetime import datetime
 
+from pypdf import PdfReader
 from litellm import completion
 import instructor
 
@@ -33,6 +34,10 @@ use your <thinking></thinking> space to note your observations and then output t
 
     return prompt
 
+def get_text_pages(pdf_path):
+    reader = PdfReader(pdf_path)
+    page_texts = [page.extract_text() for page in reader.pages]
+    return page_texts
 
 def pdf_to_messages(pdf_path, prompt):
     """
@@ -60,9 +65,12 @@ def pdf_to_messages(pdf_path, prompt):
         # Create messages list for each page
         messages = []
 
+        # Get the page texts
+        page_texts = get_text_pages(pdf_path)
+
         # Process each page
         for idx, image in enumerate(images):
-            prompt_text = f"Citation Page: {idx}"
+            # prompt_text = f"Citation Page: {idx}"
 
             # Convert PIL Image to PNG bytes
             buffer = BytesIO()
@@ -71,6 +79,7 @@ def pdf_to_messages(pdf_path, prompt):
 
             # Convert to base64
             base64_image = base64.b64encode(png_bytes).decode('utf-8')
+
 
             # Create message in Bedrock API format
             message = {
@@ -81,6 +90,10 @@ def pdf_to_messages(pdf_path, prompt):
                         "image_url": {
                             "url": f"data:image/jpeg;base64,{base64_image}"
                         }
+                    },
+                    {
+                        "type": "text",
+                        "text": f"<PageText>{page_texts[idx]}</PageText>"
                     },
                     {
                         "type": "text",
