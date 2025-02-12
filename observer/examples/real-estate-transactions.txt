@@ -1,0 +1,8 @@
+1. Does this document represent a change of ownership for real property?
+2. Does this document create a new easement?
+3. Does this document subdivide or otherwise create new parcels of land?
+4. Does this document transfer or convey mineral rights?
+5. Does this document create a permanent transfer?
+6. Does this document create a temporary transfer?
+7. Does this document create an encumberance?
+8. Can this transaction be undone by fulfillment of terms outline herein?
