@@ -1,0 +1,8 @@
+1. Do lab results show elevated cholesterol?
+2. Has a physician or care provider documented risk of cardiac distress?
+3. Has the patient undergone cardiac stress testing?
+4. Has cardiac stress testing shown degraded cardiovascular performance?
+5. Has the patient undergone an echocardiogram?
+6. Has an echocardiogram confirmed elevated cardiac risk?
+7. Did the patient report distress?
+8. Did the patient receive care for heart health?
