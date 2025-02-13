@@ -66,7 +66,7 @@ def pdf_to_messages(pdf_path, prompt):
         messages = []
 
         # Get the page texts
-        page_texts = get_text_pages(pdf_path)
+        page_texts: list[str] = get_text_pages(pdf_path)
 
         # Process each page
         for idx, image in enumerate(images):
@@ -80,20 +80,22 @@ def pdf_to_messages(pdf_path, prompt):
             # Convert to base64
             base64_image = base64.b64encode(png_bytes).decode('utf-8')
 
+            page_text = page_texts[idx]
+            # print(f"{idx} - \n{page_text}")
 
             # Create message in Bedrock API format
             message = {
                 "role": "user",
                 "content": [
                     {
+                        "type": "text",
+                        "text": f"<PageText>{page_text}</PageText>"
+                    },
+                    {
                         "type": "image_url",
                         "image_url": {
                             "url": f"data:image/jpeg;base64,{base64_image}"
                         }
-                    },
-                    {
-                        "type": "text",
-                        "text": f"<PageText>{page_texts[idx]}</PageText>"
                     },
                     {
                         "type": "text",
@@ -125,7 +127,7 @@ def ingest_pdf(input_file_path, questions, metadata={}, verbose=False):
         client = instructor.from_litellm(completion)
         page_metadata = metadata.copy()
         page_metadata['page_number'] = idx + 1 # start numbering at page 1
-
+        print(f"Processing page: {idx + 1}")
         try:
             resp = client.messages.create(
                 model="bedrock/anthropic.claude-3-sonnet-20240229-v1:0",
@@ -135,9 +137,9 @@ def ingest_pdf(input_file_path, questions, metadata={}, verbose=False):
             )
 
             # for thought in resp:
-            print(resp)
+            # print(resp)
             thoughts = resp.thoughts
-            print(f"Thoughts: {thoughts}")
+            # print(f"Thoughts: {thoughts}")
             new_observations = [Observation(thought=thought, metadata=page_metadata) for thought in thoughts]
             print(new_observations)
             observations.extend(new_observations)

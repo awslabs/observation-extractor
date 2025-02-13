@@ -65,12 +65,12 @@ class Main:
                 print(f"\tQ: {question}")
 
     def run(self):
-        print("Starting run")
         self.parse_args()
 
         if self.args.verbose:
             print("Enabled verbose output")
             self.verbose = True
+            print("Starting run")
 
         self.load_questions()
 
