@@ -18,7 +18,7 @@ Here are examples that you should filter:
 - The medical record does not contain any information indicating whether the patient shows signs of substance dependency or not.
 - The document does not mention any x-rays being performed or their results.
 
-Return True to filter out an observation. Return False to allow the observation to pass through.
+Return true to filter out an observation. Return false to allow the observation to pass through.
 
 {observation}
 """

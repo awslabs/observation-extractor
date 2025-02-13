@@ -25,6 +25,7 @@ class Observation(pydantic.BaseModel):
             'description': self.thought.description,
             'evidence': self.thought.evidence,
             'question_number': self.thought.question_number,
+            'question_set': self.metadata['question_set'],
             'question': self.thought.question,
             'metadata': self.metadata
         }

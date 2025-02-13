@@ -2,3 +2,4 @@ pydantic
 boto3
 pypdf
 pycryptodome==3.15.0
+shortuuid

@@ -2,10 +2,11 @@ import argparse
 import os
 from pprint import pprint
 
-from observer.filters.negatives import filter_negative_observations
 from observer.model.observations import Observation
 from observer.ingestors.pdf import ingest_pdf
+from observer.filters.negatives import filter_negative_observations
 from observer.writers.csv import write_observations_to_csv
+from observer.writers.dynamodb import write_observations as write_observations_to_ddb
 
 RESOURCES_DIR = os.path.join(os.path.dirname(__file__), 'examples')
 
@@ -37,12 +38,16 @@ class Main:
                                  help='Enable verbose outputs')
         self.parser.add_argument('-f', '--file', type=str,
                                  help='input file path')
+        self.parser.add_argument('-i', '--case-id', type=str, metavar='case-id',
+                                 help='a case id to associate with observations from this document')
+        self.parser.add_argument('-d', '--dynamodb-table', type=str,
+                                 help='name of an Amazon DynamoDB table to write observations to')
         self.parser.add_argument('-t', '--type', type=str,
                                  help='type of input [pdf] # todo: more')
         self.parser.add_argument('-o', '--out', type=str,
-                                 help='output file path')
-        self.parser.add_argument('-j', '--out-type', type=str,
-                                 help='output file format [csv] # todo: more')
+                                 help='output file path or table name')
+        self.parser.add_argument('-j', '--out-type', type=str, metavar='out-type',
+                                 help='output file format [csv, ddb] # todo: more')
         self.parser.add_argument('-q', '--questions', type=str,
                                  help='path to a text file with questions for your data')
         self.parser.add_argument('-c', '--count', type=int, default=3,
@@ -66,6 +71,7 @@ class Main:
 
     def run(self):
         self.parse_args()
+        print(self.args.out_type)
 
         if self.args.verbose:
             print("Enabled verbose output")
@@ -96,12 +102,20 @@ class Main:
                 for q in questions_subset:
                     print(f"Q: {q}")
 
+            metadata = {
+                'question_set': self.args.questions
+            }
+            if self.args.case_id:
+                case_id = self.args.case_id
+                print(f"Got case id: {case_id}")
+                metadata['case_id'] = case_id
+
 
             if self.args.type == "pdf":
                 if self.verbose:
                     print("Got file type 'pdf'")
                 input_file_path = self.args.file
-                new_observations = ingest_pdf(input_file_path, questions_subset, verbose=self.verbose)
+                new_observations = ingest_pdf(input_file_path, questions_subset, metadata=metadata, verbose=self.verbose)
                 self.observations.extend(new_observations)
 
         if self.verbose:
@@ -112,8 +126,11 @@ class Main:
         # apply filters
         self.filtered_observations = filter_negative_observations((self.observations))
 
-        # write out the results
-        write_observations_to_csv(self.filtered_observations, self.args.out)
+        # write out the filtered observations
+        if self.args.out_type == 'csv': # local csv file - path specified in out
+            write_observations_to_csv(self.filtered_observations, self.args.out)
+        elif self.args.out_type == 'ddb': # Amazon DynamoDB table - table specified in out
+            write_observations_to_ddb(case_id=case_id, observations=self.filtered_observations, table=self.args.out)
 
 def run():
     Main().run()
