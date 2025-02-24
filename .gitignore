@@ -2,3 +2,5 @@
 **/__pycache__/**
 sample-record-*
 .ipynb_checkpoints/**
+**/*.csv
+**/.DS_Store
