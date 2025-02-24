@@ -6,6 +6,13 @@ from observer.model.boolean import Boolean
 
 
 def is_negative_observation(observation: Observation, is_retry=False, verbose=False):
+    """
+    Returns True for observations that a datapoint was not in the incoming data.
+    :param observation:
+    :param is_retry:
+    :param verbose:
+    :return:
+    """
     # checks if this is a negative observation
     if verbose:
         print(f"Applying filter to {observation}")
@@ -52,9 +59,11 @@ Return true to filter out an observation. Return false to allow the observation 
 
 
 def filter_negative_observations(observations: list[Observation]):
-    '''Filters out negative observations
-    ie: the report does not indicate an answer to this question'''
-
+    """
+    Filters out negative observations from a list of observations.
+    :param observations: list[Observation]
+    :return: list[Bool]
+    """
     return [obs for obs in observations if not is_negative_observation(obs)]
 
 

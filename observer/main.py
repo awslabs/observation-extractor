@@ -12,6 +12,9 @@ RESOURCES_DIR = os.path.join(os.path.dirname(__file__), 'examples')
 
 
 class Main:
+    """
+    Main class for the observer cli script
+    """
     parser: argparse.ArgumentParser
     verbose: bool
     args: dict
@@ -28,7 +31,10 @@ class Main:
         self.questions = []
 
     def parse_args(self):
-        print("Processing arguments")
+        """
+        Parse command line arguments
+        """
+        print("Parsing arguments")
         self.parser = argparse.ArgumentParser(
             prog='Observer',
             description='A tool for collecting observations from data',
@@ -56,6 +62,10 @@ class Main:
         print(f"Running with args: [{self.args}]")
 
     def load_questions(self):
+        """
+        Load questions from a file
+        """
+        print("Loading questions")
         if self.args.questions:
             self.questions_file = self.args.questions
         else:

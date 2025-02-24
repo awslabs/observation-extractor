@@ -12,6 +12,16 @@ from observer.model.observations import Observation, Thought, Observations, Thou
 
 
 def get_prompt(questions, verbose=False):
+    """
+    Generate a prompt for the Claude model based on the given questions.
+
+    Args:
+        questions (list): List of questions to be included in the prompt.
+
+    Returns:
+        str: The generated prompt.
+    """
+    questions = "\n".join([f"{i+1}. {q}" for i, q in enumerate(questions)])
     prompt = f"""Process the document to return required fields if available. 
 
 Output a list of Thoughts in the specified format based on these questions. If a thought is not aligned with one of these, discard it.
@@ -35,6 +45,13 @@ use your <thinking></thinking> space to note your observations and then output t
     return prompt
 
 def get_text_pages(pdf_path):
+    """
+    Get the text content of each page in a PDF file.
+
+    Args:
+    :param pdf_path: the path to a padf file
+    :return: list[str]
+    """
     reader = PdfReader(pdf_path)
     page_texts = [page.extract_text() for page in reader.pages]
     return page_texts
@@ -113,6 +130,14 @@ def pdf_to_messages(pdf_path, prompt):
         raise Exception(f"Error converting PDF: {str(e)}")
 
 def ingest_pdf(input_file_path, questions, metadata={}, verbose=False):
+    """
+    Ingest a PDF file into the system.
+    :param input_file_path: path to local input file
+    :param questions: the question set to apply to the file
+    :param metadata: metadata that will be added to each observation
+    :param verbose: enable verbose logging
+    :return:
+    """
     print(f"Ingesting pdf file at {input_file_path}")
     prompt = get_prompt(questions, verbose)
 
