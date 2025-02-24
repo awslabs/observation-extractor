@@ -40,7 +40,7 @@ python -m pip install -e . # local install for dev
 
 ### Usage
 
-Observer uses AWS credentials from the runtime environment. AWS IAM lets you securely manage identities and access to AWS services and resources. Credentials can be managed using the AWS CLI for local operations or by adding IAM permissions to the compute runtime (ie: AWS Lambda, ECS, EC2, or SageMaker).
+Observer uses AWS credentials from the runtime environment. AWS IAM lets you securely manage identities and access to AWS services and resources. Credentials can be managed using the AWS CLI for local operations or by adding IAM permissions to the compute runtime (ie: AWS Lambda, ECS, EC2, or SageMaker). A best practice is to use separate roles for local development and automated pipelines to mitigate risk of data corruption.
 
 Use --help to view available options
 
