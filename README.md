@@ -1,14 +1,14 @@
-# Observer
+# Observation Extractor
 
-<b>tl; dr</b> - Observer is a tool for collecting observations from data. 
+<b>tl; dr</b> - Observation Extractor is a tool for collecting observations from data. 
 
 Observations are useful bits of data related to questions that you define that is extracted from the data you pass in. 
-Use Observer to process pdf (and maybe someday other files) into formats like csv (and later parqet) to turn unstructured
+Use Observation Extractor to process pdf (and maybe someday other files) into formats like csv (and later parqet) to turn unstructured
 documents into structured observations that you can query and use directly or through your application. When you output to a format like csv or parquet, observations are the row level records.
 
 ## What does it do?
 
-Observer takes an unstructured data file as input (like a pdf) and outputs a list of Observation objects. Each observation 
+Observation Extractor takes an unstructured data file as input (like a pdf) and outputs a list of Observation objects. Each observation 
 includes standard fields that are extracted from the document together with metadata like the document name and page number. 
 
 ## So what?
@@ -19,7 +19,7 @@ You can populate observations into a datastore and make them available to your h
 
 ## Where does it fit?
 
-You can use Observer as a local script for ad-hoc extractions or as a component in data ingestion pipelines. The CLI 
+You can use Observation Extractor as a local script for ad-hoc extractions or as a component in data ingestion pipelines. The CLI 
 provides simple interface that you can use in evaluation, tuning, and scaled ingestion.
 
 ## What does this look like on AWS?
@@ -40,7 +40,7 @@ python -m pip install -e . # local install for dev
 
 ### Usage
 
-Observer uses AWS credentials from the runtime environment. AWS IAM lets you securely manage identities and access to AWS services and resources. Credentials can be managed using the AWS CLI for local operations or by adding IAM permissions to the compute runtime (ie: AWS Lambda, ECS, EC2, or SageMaker). A best practice is to use separate roles for local development and automated pipelines to mitigate risk of data corruption.
+Observation Extractor uses AWS credentials from the runtime environment. AWS IAM lets you securely manage identities and access to AWS services and resources. Credentials can be managed using the AWS CLI for local operations or by adding IAM permissions to the compute runtime (ie: AWS Lambda, ECS, EC2, or SageMaker). A best practice is to use separate roles for local development and automated pipelines to mitigate risk of data corruption.
 
 Use --help to view available options
 
@@ -49,7 +49,7 @@ Use --help to view available options
 Initializing main class
 Starting run
 Processing arguments
-usage: Observer [-h] [-v] [-f FILE] [-t TYPE] [-o OUT] [-j OUT_TYPE] [-q QUESTIONS] [-c COUNT]
+usage: Observation Extractor [-h] [-v] [-f FILE] [-t TYPE] [-o OUT] [-j OUT_TYPE] [-q QUESTIONS] [-c COUNT]
 
 A tool for collecting observations from data
 
