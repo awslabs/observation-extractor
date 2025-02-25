@@ -6,7 +6,7 @@ import json
 from boto3.dynamodb.conditions import Key
 import boto3
 
-from observer.model.observations import Observation
+from observation_extractor.model.observations import Observation
 
 
 def write_to_ddb(item, table):

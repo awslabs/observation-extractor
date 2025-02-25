@@ -3,7 +3,7 @@
 
 import csv
 
-from observer.model.observations import Observation
+from observation_extractor.model.observations import Observation
 
 def write_observations_to_csv(observations: list[Observation], outfile_path: str):
     """

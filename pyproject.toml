@@ -1,5 +1,5 @@
 [project]
-name = "observer"
+name = "observation_extractor"
 version = "0.0.1"
 authors = [
   { name="Josh Famestad", email="famestad@amazon.com" },
@@ -7,14 +7,15 @@ authors = [
 description = "A tool for collecting observations from data"
 readme = "README.md"
 requires-python = ">=3.12"
+license="Apache-2.0"
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: Apache Software License",
     "Operating System :: OS Independent",
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["observer"]
+packages = ["observation_extractor"]
 
 [build-system]
 requires = ["hatchling"]
@@ -32,4 +33,4 @@ exclude = [
 ]
 
 [project.scripts]
-observer = "observer.main:run"
+observer = "observation_extractor.main:run"

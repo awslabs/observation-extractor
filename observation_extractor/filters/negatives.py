@@ -4,8 +4,8 @@
 import instructor
 from litellm import completion
 
-from observer.model.observations import Observation
-from observer.model.boolean import Boolean
+from observation_extractor.model.observations import Observation
+from observation_extractor.model.boolean import Boolean
 
 
 def is_negative_observation(observation: Observation, is_retry=False, verbose=False):

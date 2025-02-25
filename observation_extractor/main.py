@@ -5,11 +5,11 @@ import argparse
 import os
 from pprint import pprint
 
-from observer.model.observations import Observation
-from observer.ingestors.pdf import ingest_pdf
-from observer.filters.negatives import filter_negative_observations
-from observer.writers.csv import write_observations_to_csv
-from observer.writers.dynamodb import write_observations as write_observations_to_ddb
+from observation_extractor.model.observations import Observation
+from observation_extractor.ingestors.pdf import ingest_pdf
+from observation_extractor.filters.negatives import filter_negative_observations
+from observation_extractor.writers.csv import write_observations_to_csv
+from observation_extractor.writers.dynamodb import write_observations as write_observations_to_ddb
 
 RESOURCES_DIR = os.path.join(os.path.dirname(__file__), 'examples')
 

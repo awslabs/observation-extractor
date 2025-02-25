@@ -11,7 +11,7 @@ from pypdf import PdfReader
 from litellm import completion
 import instructor
 
-from observer.model.observations import Observation, Thought, Observations, Thoughts
+from observation_extractor.model.observations import Observation, Thought, Observations, Thoughts
 
 
 def get_prompt(questions, verbose=False):
