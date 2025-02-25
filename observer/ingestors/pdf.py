@@ -28,7 +28,11 @@ def get_prompt(questions, verbose=False):
     prompt = f"""Process the document to return required fields if available. 
 
 Output a list of Thoughts in the specified format based on these questions. If a thought is not aligned with one of these, discard it.
+
+Use these questions as a guide to find relevant information from the <PageText> and page image.
+<questions>
 {questions}
+</questions>
 
 Use the description field to describe what you found.
 
