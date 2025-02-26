@@ -45,11 +45,10 @@ Observation Extractor uses AWS credentials from the runtime environment. AWS IAM
 Use --help to view available options
 
 ```bash
-(.venv) localhost % observer --help
+(.venv) localhost % observer -h
 Initializing main class
-Starting run
-Processing arguments
-usage: Observation Extractor [-h] [-v] [-f FILE] [-t TYPE] [-o OUT] [-j OUT_TYPE] [-q QUESTIONS] [-c COUNT]
+Parsing arguments
+usage: Observer [-h] [-v] [-f FILE] [-i case-id] [-d DYNAMODB_TABLE] [-t TYPE] [-o OUT] [-j out-type] [-q QUESTIONS] [-c COUNT]
 
 A tool for collecting observations from data
 
@@ -57,15 +56,20 @@ options:
   -h, --help            show this help message and exit
   -v, --verbose         Enable verbose outputs
   -f, --file FILE       input file path
+  -i, --case-id case-id
+                        a case id to associate with observations from this document
+  -d, --dynamodb-table DYNAMODB_TABLE
+                        name of an Amazon DynamoDB table to write observations to
   -t, --type TYPE       type of input [pdf] # todo: more
-  -o, --out OUT         output file path
-  -j, --out-type OUT_TYPE
-                        output file format [csv] # todo: more
+  -o, --out OUT         output file path or table name
+  -j, --out-type out-type
+                        output file format [csv, ddb] # todo: more
   -q, --questions QUESTIONS
                         path to a text file with questions for your data
   -c, --count COUNT     maximum questions to include in a prompt
 
 Use --help to see more options
+
 ```
 
 By example
