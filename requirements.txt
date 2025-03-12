@@ -1,4 +1,7 @@
 pydantic
+pdf2image
+litellm
+instructor
 boto3
 pypdf
 pycryptodome==3.15.0
