@@ -4,5 +4,5 @@ litellm
 instructor
 boto3
 pypdf
-pycryptodome==3.15.0
+pycryptodome==3.19.1
 shortuuid
