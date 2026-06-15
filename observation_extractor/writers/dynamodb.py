@@ -74,6 +74,11 @@ def write_observations(case_id, observations: list[Observation], table: str):
     :param table: table name
     :return: responses
     """
-    results = [write_observation(case_id, observation=observation, table=table) for observation in observations]
+    results = []
+    for i, observation in enumerate(observations):
+        if not isinstance(observation, Observation):
+            print(f"Skipping element at index {i}: expected Observation, got {type(observation).__name__}")
+            continue
+        results.append(write_observation(case_id, observation=observation, table=table))
     return results
 

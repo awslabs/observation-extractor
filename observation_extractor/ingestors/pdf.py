@@ -11,6 +11,7 @@ from pypdf import PdfReader
 from litellm import completion
 import instructor
 
+from observation_extractor.config import MODEL, MAX_TOKENS
 from observation_extractor.model.observations import Observation, Thought, Observations, Thoughts
 
 
@@ -118,7 +119,7 @@ def pdf_to_messages(pdf_path, prompt):
                     {
                         "type": "image_url",
                         "image_url": {
-                            "url": f"data:image/jpeg;base64,{base64_image}"
+                            "url": f"data:image/png;base64,{base64_image}"
                         }
                     },
                     {
@@ -162,8 +163,8 @@ def ingest_pdf(input_file_path, questions, metadata={}, verbose=False):
         print(f"Processing page: {idx + 1}")
         try:
             resp = client.messages.create(
-                model="bedrock/anthropic.claude-3-sonnet-20240229-v1:0",
-                max_tokens=1024,
+                model=MODEL,
+                max_tokens=MAX_TOKENS,
                 messages=[page_message],
                 response_model=Thoughts,
             )

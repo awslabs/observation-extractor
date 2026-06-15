@@ -4,6 +4,7 @@
 import instructor
 from litellm import completion
 
+from observation_extractor.config import MODEL, MAX_TOKENS
 from observation_extractor.model.observations import Observation
 from observation_extractor.model.boolean import Boolean
 
@@ -47,8 +48,8 @@ Return true to filter out an observation. Return false to allow the observation 
 
     try:
         resp = client.messages.create(
-            model="bedrock/anthropic.claude-3-sonnet-20240229-v1:0",
-            max_tokens=1024,
+            model=MODEL,
+            max_tokens=MAX_TOKENS,
             messages=[message],
             response_model=Boolean,
         )
@@ -67,7 +68,7 @@ def filter_negative_observations(observations: list[Observation]):
     :param observations: list[Observation]
     :return: list[Bool]
     """
-    return [obs for obs in observations if not is_negative_observation(obs)]
+    return [obs for obs in observations if not (obs is None or is_negative_observation(obs))]
 
 
 
